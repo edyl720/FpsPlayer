@@ -15,11 +15,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {   
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        
         Vector3 velocity;
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
         Vector3 move = transform.right * x + transform.forward * z;
+        
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         controller.Move(move * speed * Time.deltaTime);
         
@@ -31,9 +34,6 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -2.0f;
         }
-
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
         
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
