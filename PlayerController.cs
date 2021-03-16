@@ -21,19 +21,17 @@ public class PlayerController : MonoBehaviour
         Vector3 velocity;
 
         Vector3 move = transform.right * x + transform.forward * z;
-        
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        controller.Move(move * speed * Time.deltaTime);
-        
         velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime);
 
         if (isGrounded && velocity.y < 0) 
         {
             velocity.y = -2.0f;
         }
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        controller.Move(velocity * Time.deltaTime);
         
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
